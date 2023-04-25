@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ECObjects.Abstract.Common;
+using ECObjects.Abstract.Instance;
+using ECObjects.Abstract.Schema.Type;
+
+namespace ECObjects.Abstract.Schema
+{
+    public interface IECProperty : IECObjectBase, IECCustomAttributeContainer
+    {
+        IECType Type { get; }
+        IECClass ClassDefinition { get; set; }
+        bool IsReadOnly { get; set; }
+
+        IECPropertyValue CreateValue(IECValueContainer container);
+    }
+}

@@ -19,7 +19,7 @@ namespace ECObjects.Abstract.Schema
         // classes
         int ClassCount { get; }
         IECClass[] GetClasses();
-        IECClass GetClass(string className);
+        IECClass? GetClass(string className);
         IECClass this[string className] { get; }
         void AddClass(IECClass classToAdd);
         void RemoveClass(IECClass classToRemove);

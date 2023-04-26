@@ -8,6 +8,6 @@ namespace ECObjects.Abstract.Common
 {
     public interface IDescribed
     {
-        string Description { get; set; }
+        string? Description { get; set; }
     }
 }

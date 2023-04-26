@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ECObjects.Abstract.Schema;
+using ECObjects.Utils;
 
 namespace ECObjects.Schema
 {
+    [Serializable]
     public class ECSchema
     {
         private Dictionary<string, IECClass> m_classes;
@@ -25,7 +27,7 @@ namespace ECObjects.Schema
         // Files
 
         public bool IsSupplemented { get; set; }
-        public string FullName => $"{NamespacePrefix}-{Name}.{VersionMajor}.{VersionMinor}";
+        public string FullName => ECNameRelatedUtils.FormatFullSchemaName(Name, VersionMajor, VersionMinor);
         public string NamespacePrefix { get; private set; }
         public int VersionMajor { get; private set; }
         public int VersionMinor { get; private set; }
@@ -39,5 +41,50 @@ namespace ECObjects.Schema
 
         // Classes
         public int ClassCount => m_classes.Count;
+
+        public virtual IECClass[] GetClasses()
+        {
+            return m_classes.Values.ToArray();
+        }
+
+        public virtual IECClass? GetClass(string className)
+        {
+            this.m_classes.TryGetValue(className, out IECClass? result);
+            return result;
+        }
+
+        public virtual IECClass this[string className]
+        {
+            get
+            {
+                IECClass? cls = GetClass(className);
+                if (cls == null)
+                {
+                    throw new InvalidOperationException("ClassNotFound");
+                }
+                return cls;
+            }
+        }
+
+        public virtual void AddClass(IECClass classToAdd)
+        {
+            if (classToAdd.Schema != null && classToAdd.Schema != this)
+            {
+                throw new InvalidOperationException("ClassNotBelongsSchema");
+            }
+
+            if (classToAdd.Schema == null)
+            {
+                //classToAdd.Schema = this;
+            }
+
+            string name = classToAdd.Name;
+            if (this.GetClass(name) == null)
+            {
+                this.m_classes.Add(name, classToAdd);
+            }
+
+
+        }
     }
 }

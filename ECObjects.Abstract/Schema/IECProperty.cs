@@ -12,7 +12,10 @@ namespace ECObjects.Abstract.Schema
     public interface IECProperty : IECObjectBase, IECCustomAttributeContainer
     {
         IECType Type { get; }
+        void SetType(IECType newType);
+
         IECClass ClassDefinition { get; set; }
+
         bool IsReadOnly { get; set; }
 
         IECPropertyValue CreateValue(IECValueContainer container);

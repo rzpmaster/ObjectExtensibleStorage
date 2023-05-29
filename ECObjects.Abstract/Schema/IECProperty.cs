@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ECObjects.Abstract.Common;
 using ECObjects.Abstract.Instance;
-using ECObjects.Abstract.Schema.Type;
+using ECObjects.Abstract.Schema.ECType;
 
 namespace ECObjects.Abstract.Schema
 {

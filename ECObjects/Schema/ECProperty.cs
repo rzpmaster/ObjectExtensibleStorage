@@ -7,7 +7,7 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using ECObjects.Abstract.Instance;
 using ECObjects.Abstract.Schema;
-using ECObjects.Abstract.Schema.Type;
+using ECObjects.Abstract.Schema.ECType;
 
 namespace ECObjects.Schema
 {

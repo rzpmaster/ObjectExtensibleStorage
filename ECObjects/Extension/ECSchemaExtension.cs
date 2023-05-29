@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECObjects.Utils
+namespace ECObjects.Extension
 {
-    public static class ECNameRelatedUtils
+    public class ECSchemaExtension
     {
         public static string FormatSchemaVersion(int versionMajor, int versionMinor)
         {
@@ -16,9 +16,7 @@ namespace ECObjects.Utils
 
         public static string FormatFullSchemaName(string schemaName, int versionMajor, int versionMinor)
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0}.{1}", schemaName, ECNameRelatedUtils.FormatSchemaVersion(versionMajor, versionMinor));
+            return string.Format(CultureInfo.InvariantCulture, "{0}.{1}", schemaName, ECSchemaExtension.FormatSchemaVersion(versionMajor, versionMinor));
         }
-
-
     }
 }

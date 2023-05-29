@@ -8,7 +8,7 @@ using ECObjects.Abstract.Schema;
 
 namespace ECObjects.Abstract.Instance
 {
-    public interface IECInstance : IECValueContainer, IEnumerable<IECPropertyValue>, IDump
+    public interface IECInstance : IEnumerable<IECPropertyValue>, IECValueContainer, IDump
     {
         IECClass ClassDefinition { get; }
         string InstanceId { get; set; }

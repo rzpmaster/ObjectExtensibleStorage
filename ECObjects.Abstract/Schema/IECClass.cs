@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using ECObjects.Abstract.Instance;
-using ECObjects.Abstract.Schema.Type;
+using ECObjects.Abstract.Schema.ECType;
 
 namespace ECObjects.Abstract.Schema
 {
-    public interface IECClass : IECObjectBase, IEnumerable<IECProperty>, IECStructType, IECCustomAttributeContainer
+    public interface IECClass : IEnumerable<IECProperty>, IECStructType, IECType, IECCustomAttributeContainer, IECObjectBase
     {
         IECInstance CreateInstance();
         IECSchema Schema { get; }

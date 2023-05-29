@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ECObjects.Abstract.Instance;
 
-namespace ECObjects.Abstract.Schema.Type
+namespace ECObjects.Abstract.Schema.ECType
 {
     public interface IECType : IECObjectBase
     {

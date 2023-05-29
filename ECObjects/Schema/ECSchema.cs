@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ECObjects.Abstract.Schema;
-using ECObjects.Utils;
+using ECObjects.Extension;
 
 namespace ECObjects.Schema
 {
@@ -27,7 +27,7 @@ namespace ECObjects.Schema
         // Files
 
         public bool IsSupplemented { get; set; }
-        public string FullName => ECNameRelatedUtils.FormatFullSchemaName(Name, VersionMajor, VersionMinor);
+        public string FullName => ECSchemaExtension.FormatFullSchemaName(Name, VersionMajor, VersionMinor);
         public string NamespacePrefix { get; private set; }
         public int VersionMajor { get; private set; }
         public int VersionMinor { get; private set; }

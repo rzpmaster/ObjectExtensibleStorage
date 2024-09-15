@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ECObjects.Abstract.Schema;
+using ECObjects.Abstract.Locater;
+using ECObjects.Abstract.Schema.ECType;
+using ECObjects.Locater;
 using ECObjects.XML;
 
 namespace ECObjects
@@ -19,19 +21,33 @@ namespace ECObjects
 
         public static void Initialize()
         {
-            if (!s_initialized)
+            if (Thread.VolatileRead(ref ECObjects.s_initialized) != 0)
             {
-                s_serializor.Add(new ECSchemaXmlSerializer());
-                s_serializor.Add(new ECInstanceGraphXmlSerializer());
-
-                s_initialized = true;
+                return;
+            }
+            object obj = ECObjects.s_initializationMutex;
+            lock (obj)
+            {
+                if (ECObjects.s_initialized == 0)
+                {
+                    ECObjects.CustomSerializationHandlers.Add(new ECSchemaXmlSerializer());
+                    ECObjects.CustomSerializationHandlers.Add(new ECInstanceGraphXmlSerializer());
+                    //ECObjects.RegisterHandler(null);
+                    ECObjects.s_initialized = 1;
+                }
             }
         }
 
+        public static IList<ECXmlSerializer> CustomSerializationHandlers
+        {
+            get
+            {
+                return ECObjects.s_serializationCustomHandlers;
+            }
+        }
 
-
-        private static bool s_initialized;
-        private static List<ECXmlSerializer> s_serializor = new List<ECXmlSerializer>();
-        private static List<IECSchemaLocater> s_schemaLocaters = new List<IECSchemaLocater>();
+        private static int s_initialized;
+        private static object s_initializationMutex = new object();
+        private static List<ECXmlSerializer> s_serializationCustomHandlers = new List<ECXmlSerializer>();
     }
 }

@@ -13,10 +13,10 @@ namespace ECObjects.Abstract.Schema
     {
         IECInstance CreateInstance();
         IECSchema Schema { get; }
-        bool IsStruct { get; set; }
-        bool IsCustomAttribute { get; set; }
-        bool IsDomainClass { get; set; }
-        bool IsFinal { get; set; }
+        bool IsStruct { get; }
+        bool IsCustomAttribute { get; }
+        bool IsDomainClass { get; }
+        bool IsFinal { get; }
 
         // base classes
         IECClass[] BaseClasses { get; }

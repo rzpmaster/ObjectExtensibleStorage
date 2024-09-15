@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECObjects.Instance
+namespace ECObjects.Locater
 {
-    internal class Instance
+    public class SearchPathSchemaFileLocator : SchemaFileLocater
     {
     }
 }

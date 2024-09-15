@@ -19,7 +19,7 @@ namespace ECObjects.Schema
             IECClass? ecClass = propertyType as IECClass;
             if (ecClass != null && !ecClass.IsStruct)
             {
-                throw new InvalidOperationException("StructPropertyRequiresStructClass");
+                throw Exceptions.StructTypeNotMatchException.Throw(propertyType.Name);
             }
             this.m_propertyName = propertyName;
             this.m_propertyType = propertyType;
